@@ -5,11 +5,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view ('home');
 });
-Route::get("/profile", function () {
-    return 'halaman profile';
+Route::get('/profil', function () {
+    return view('profil');
 });
 Route::get('/berita', function () {
-    return 'halaman berita';
+    return view('berita');
 });
 Route::get('contact', function () {
     return 'halaman contact';
