@@ -1,16 +1,93 @@
 <?php
 
+use App\Models\Berita
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view ('home');
+    return view('home', [
+        "title" => "home",
+    ]);
 });
-Route::get('/profil', function () {
-    return view('profil');
+
+Route::get('/profile', function () {
+    return view('profile',[
+        "title" => "profile",
+        "nama" => "markonah",
+        "nohp" => "00857326329",
+        "foto" => "images/reza.jpg",
+    ]);
 });
+
 Route::get('/berita', function () {
-    return view('berita');
+
+    $data_berita = [
+        [
+            "judul" => "Unimus Ganteng",
+            "slug" => "unimus-ganteng",
+            "penulis" => "anjo",
+            "konten" => "pembunuhan tanpa busana daerah ciliwangi",
+        ],
+        [
+            "judul" => "Berita Unimus Hot",
+            "slug"=> "berita-unimus-hot",
+            "penulis" => "jamno",
+            "konten" => "menangis meratapi nasib, seorang pemuda ditemukan sedang melahirkan disekitar lampu merah ciliwung",
+        ],
+        [
+            "judul" => "Fatur Full Percakapan",
+            "slug" => "fatur-full-percakapan",
+            "penulis" => "pukime",
+            "konten" => "munaroh menikami",
+        ],
+    ];
+    return view('berita', [
+        "title" => "berita",
+        "berita" => $data_berita,
+    ]);
 });
-Route::get('contact', function () {
-    return 'halaman contact';
+
+Route::get('/berita/{slug}', function ($slugp) {
+
+    $data_berita = [
+        [
+            "judul" => "Unimus Ganteng",
+            "slug" => "unimus-ganteng",
+            "penulis" => "anjo",
+            "konten" => "pembunuhan tanpa busana daerah ciliwangi",
+        ],
+        [
+            "judul" => "Berita Unimus Hot",
+            "slug"=> "berita-unimus-hot",
+            "penulis" => "jamno",
+            "konten" => "menangis meratapi nasib, seorang pemuda ditemukan sedang melahirkan disekitar lampu merah ciliwung",
+        ],
+        [
+            "judul" => "Fatur Full Percakapan",
+            "slug" => "fatur-full-percakapan",
+            "penulis" => "pukime",
+            "konten" => "munaroh menikami",
+        ],
+    ];
+    $new_berita = [];
+    
+    foreach ($data_berita as $berita)
+ {
+
+        if($berita["slug"] === $slugp)
+             {
+            $new_berita = $berita; ///$berita =>[judul, slug, penulis, konten]
+            }
+    }
+
+
+    return view('singgleberita', [
+        "title" => "Berita",
+        "new_berita" => $new_berita,
+    ]);
+});
+
+Route::get('/contact', function () {
+    return view('contact', [
+        "title" => "contact",
+    ]);
 });
