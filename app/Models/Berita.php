@@ -7,28 +7,41 @@ use Illuminate\Database\Eloquent\Model;
 
 class Berita extends Model
 {
-   static $data_berita = [
+       private static $data_berita = [
         [
-            "judul" => "Unimus Ganteng",
-            "slug" => "unimus-ganteng",
-            "penulis" => "anjo",
-            "konten" => "pembunuhan tanpa busana daerah ciliwangi",
+        "judul" => "Farel",
+        "slug" => "farel",
+        "penulis" => "detikhealth",
+        "konten" => "ra reti."
         ],
+        
         [
-            "judul" => "Berita Unimus Hot",
-            "slug"=> "berita-unimus-hot",
-            "penulis" => "jamno",
-            "konten" => "menangis meratapi nasib, seorang pemuda ditemukan sedang melahirkan disekitar lampu merah ciliwung",
-        ],
-        [
-            "judul" => "Fatur Full Percakapan",
-            "slug" => "fatur-full-percakapan",
-            "penulis" => "pukime",
-            "konten" => "munaroh menikami",
+        "judul" => "Houthi di Yaman menahan 9 staf PBB lagi",
+        "slug" => "houthi-di-yaman-menahan-9-staf-pbb-lagi",
+        "penulis" => "AP News",
+        "konten" => "Sejak 2021, kelompok Houthi yang didukung Iran dikabarkan telah menahan total 53 staf PBB. Langkah ini dikritik keras karena mengganggu pekerjaan kemanusiaan di Yaman."
         ]
     ];
+
     public static function ambildata()
     {
-        return self::$data_berita;
-    } 
+        return Self:: $data_berita;
+    }
+
+    public static function caridata ($slug)
+    {
+        $data_beritas = Self:: $data_berita;
+
+            $new_berita = [];
+    foreach($data_beritas as $berita)
+    {
+        if ($berita["slug"] === $slug)
+        {
+            $new_berita = $berita;
+        }
+    }
+
+    return $new_berita;
+
+    }
 }

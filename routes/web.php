@@ -1,6 +1,8 @@
 <?php
 
-use App\Models\Berita
+use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\BeritaController;
+use App\Models\Berita;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,79 +14,16 @@ Route::get('/', function () {
 Route::get('/profile', function () {
     return view('profile',[
         "title" => "profile",
-        "nama" => "markonah",
-        "nohp" => "00857326329",
-        "foto" => "images/reza.jpg",
+        "nama" => "Muhammad Farel",
+        "nohp" => "085800661620",
+        "foto" => "images/images.jpg",
     ]);
 });
 
-Route::get('/berita', function () {
+Route::get('/berita', action: [BeritaController::class, 'index']);
+Route::get('/berita/{slug}', [BeritaController::class,'tampildata']);
 
-    $data_berita = [
-        [
-            "judul" => "Unimus Ganteng",
-            "slug" => "unimus-ganteng",
-            "penulis" => "anjo",
-            "konten" => "pembunuhan tanpa busana daerah ciliwangi",
-        ],
-        [
-            "judul" => "Berita Unimus Hot",
-            "slug"=> "berita-unimus-hot",
-            "penulis" => "jamno",
-            "konten" => "menangis meratapi nasib, seorang pemuda ditemukan sedang melahirkan disekitar lampu merah ciliwung",
-        ],
-        [
-            "judul" => "Fatur Full Percakapan",
-            "slug" => "fatur-full-percakapan",
-            "penulis" => "pukime",
-            "konten" => "munaroh menikami",
-        ],
-    ];
-    return view('berita', [
-        "title" => "berita",
-        "berita" => $data_berita,
-    ]);
-});
-
-Route::get('/berita/{slug}', function ($slugp) {
-
-    $data_berita = [
-        [
-            "judul" => "Unimus Ganteng",
-            "slug" => "unimus-ganteng",
-            "penulis" => "anjo",
-            "konten" => "pembunuhan tanpa busana daerah ciliwangi",
-        ],
-        [
-            "judul" => "Berita Unimus Hot",
-            "slug"=> "berita-unimus-hot",
-            "penulis" => "jamno",
-            "konten" => "menangis meratapi nasib, seorang pemuda ditemukan sedang melahirkan disekitar lampu merah ciliwung",
-        ],
-        [
-            "judul" => "Fatur Full Percakapan",
-            "slug" => "fatur-full-percakapan",
-            "penulis" => "pukime",
-            "konten" => "munaroh menikami",
-        ],
-    ];
-    $new_berita = [];
-    
-    foreach ($data_berita as $berita)
- {
-
-        if($berita["slug"] === $slugp)
-             {
-            $new_berita = $berita; ///$berita =>[judul, slug, penulis, konten]
-            }
-    }
-
-
-    return view('singgleberita', [
-        "title" => "Berita",
-        "new_berita" => $new_berita,
-    ]);
-});
+Route::get('datamahasiswa', [MahasiswaController::class,'index']);
 
 Route::get('/contact', function () {
     return view('contact', [
