@@ -24,6 +24,9 @@ Route::get('/berita', action: [BeritaController::class, 'index']);
 Route::get('/berita/{slug}', [BeritaController::class,'tampildata']);
 
 Route::get('datamahasiswa', [MahasiswaController::class,'index']);
+Route::get('/tambahmahasiswa', [MahasiswaController::class, 'tambahmahasiswa']);
+
+Route::post('insertmahasiswa', [MahasiswaController::class, 'insertmahasiswa']);
 
 Route::get('/contact', function () {
     return view('contact', [
