@@ -23,10 +23,15 @@ Route::get('/profile', function () {
 Route::get('/berita', action: [BeritaController::class, 'index']);
 Route::get('/berita/{slug}', [BeritaController::class,'tampildata']);
 
-Route::get('datamahasiswa', [MahasiswaController::class,'index']);
-Route::get('/tambahmahasiswa', [MahasiswaController::class, 'tambahmahasiswa']);
+Route::get('/mahasiswa', [MahasiswaController::class,'index'])->name('mahasiswa');
+Route::get('/tambahmahasiswa', [MahasiswaController::class, 'tambahmahasiswa'])->name('mahasiswa.tambah');
 
-Route::post('insertmahasiswa', [MahasiswaController::class, 'insertmahasiswa']);
+Route::post('/insertdata', [MahasiswaController::class, 'insertdata'])->name('insertdata');
+
+Route::get('/tampildata/{id}',[MahasiswaController::class, 'tampildata'])->name('tampildata');
+
+Route::POST('/editdata/{id}',[MahasiswaController::class, 'editdata'])->name('editdata');
+
 
 Route::get('/contact', function () {
     return view('contact', [
