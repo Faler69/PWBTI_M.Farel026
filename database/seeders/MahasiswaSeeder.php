@@ -13,12 +13,12 @@ class MahasiswaSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('mahasiswas')->insert([
+        DB::table('mahasiswa')->insert([
             'name' => "Yanto",
             'nim' => 1432564810,
             'prodi' => "Sastra Mesin",
             'email' => "ynt0@email.com",
-            'nohp' =>62776038,
+            'nohp' =>62776038,  
         ]);
         }
 }
