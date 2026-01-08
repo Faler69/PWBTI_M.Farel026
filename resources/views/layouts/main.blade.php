@@ -33,6 +33,21 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/datamahasiswa">Data Mahasiswa</a>
                 </li>
+                                <li class="nav-item">
+                    @auth
+                        <span class="nav-link">{{ Auth::user()->name }}</span>
+                    @endauth
+                </li>
+                <li class="nav-item">
+                    @auth
+                        <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-danger" style="margin-top: 5px;">Logout</button>
+                        </form>
+                    @else
+                        <a class="nav-link btn btn-sm btn-primary text-white" href="{{ route('login') }}" style="margin-top: 5px;">Login</a>
+                    @endauth
+                </li>
             </ul>
         </div>
     </nav>

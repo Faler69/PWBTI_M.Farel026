@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Models\Berita;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,9 @@ Route::get('/datamahasiswa', [MahasiswaController::class,'index'])->name('datama
 Route::get('/tambahmahasiswa', [MahasiswaController::class, 'tambahmahasiswa'])->name('mahasiswa.tambah');
 Route::post('/insertdata', [MahasiswaController::class, 'insertdata'])->name('insertdata');
 
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login.attempt');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/tampildata/{id}',[MahasiswaController::class, 'tampildata'])->name('tampildata');
 
