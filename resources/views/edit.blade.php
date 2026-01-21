@@ -5,12 +5,11 @@
     <div class="col-8">
     <div class="card">
         <div class="card-body">
-            <form action="/editdata/{{ $data['id'] }}" method="POST" enctype="multipart/form.data">
+            <form action="/editdata/{{ $data['id'] }}" method="POST" enctype="multipart/form-data">
             @csrf
-    <form>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Nama</label>
-    <input type="text" name="name" id="nama" value="{{ $data['nama'] }}" placeholder="Nama Lengkap" class="form-control" aria-describedby="emailHelp">
+    <input type="text" name="nama" id="nama" value="{{ $data['nama'] }}" placeholder="Nama Lengkap" class="form-control" aria-describedby="emailHelp">
   </div>
   <div class="mb-3">
     <label for="nim" class="form-label">NIM</label>
@@ -32,4 +31,21 @@
 </form>
     </div>
     </div>
+
+<script>
+document.querySelector('form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    Swal.fire({
+        title: 'Menyimpan...',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
+    
+    this.submit();
+});
+</script>
 @endsection

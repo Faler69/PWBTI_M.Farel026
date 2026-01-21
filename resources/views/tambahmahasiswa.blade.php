@@ -31,4 +31,21 @@
 </form>
     </div>
     </div>
+
+<script>
+document.querySelector('form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    Swal.fire({
+        title: 'Menyimpan...',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
+    
+    this.submit();
+});
+</script>
 @endsection

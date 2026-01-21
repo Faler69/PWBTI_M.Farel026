@@ -31,7 +31,7 @@
         <td>{{$mahasiswa["nohp"]}}</td>
         <td>
             <a href="tampildata/{{ $mahasiswa['id'] }}" class="btn btn-primary">EDIT</a>
-            <a href="deletedata/{{ $mahasiswa['id'] }}" class="btn btn-danger" onclick="return confirm('Yakin mau dihapus?')">DELETE</a>
+            <a href="#" class="btn btn-danger" onclick="deleteData({{ $mahasiswa['id'] }})">DELETE</a>
         </td>
         <?php $i++?>
     </tr>
@@ -39,4 +39,22 @@
   </tbody>
 </table>
 </div>
+
+<script>
+function deleteData(id) {
+    Swal.fire({
+        title: 'Yakin ingin menghapus?',
+        text: "Data yang dihapus tidak bisa dikembalikan!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Ya, hapus!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = '/deletedata/' + id;
+        }
+    })
+}
+</script>
 @endsection
